@@ -1,5 +1,5 @@
 {
-  "name": "web-page-diff",
+  "name": "webdiff",
   "version": "0.0.0",
   "description": "compares two web pages using phantomjs and image-diff",
   "main": "index.js",
@@ -21,9 +21,9 @@
   "author": "djkmiles",
   "license": "Apache 2.0",
   "bugs": {
-    "url": "https://github.com/djkmiles/web-page-diff/issues"
+    "url": "https://github.com/djkmiles/webdiff/issues"
   },
-  "homepage": "https://github.com/djkmiles/web-page-diff",
+  "homepage": "https://github.com/djkmiles/webdiff",
   "dependencies": {
     "express": "~4.12.3",
     "body-parser": "~1.12.3",

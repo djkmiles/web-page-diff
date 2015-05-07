@@ -1,23 +1,16 @@
 var express = require('express');
 var app = express();
-var bodyParser = require('body-parser');
 var Promise = require('promise');
 var webshot = require('webshot');
 var imageDiff = require('image-diff');
 
 var port = process.env.PORT || 3000;
 
-app.get('/test', function() {
-	console.log('test');
-});
-
 app.get('/v1/:one/:two', function(req, res) {
-
 	var one = req.params.one;
 	var two = req.params.two;
 	if (!(one && two)) error('Request must contain urls for "one" and "two".');
-
-	var opt = {shotsize: {width: 'window', height: 'all'}};
+	var opt = {shotSize: {width: 'window', height: 'all'}};
 	console.log('Getting %s and %s', one, two);
 	webshot(one, 'one.png', opt, function() {
 		console.log('Rendered %s', one);
@@ -31,7 +24,8 @@ app.get('/v1/:one/:two', function(req, res) {
 			}, function (err, imagesAreSame) {
 				if (err) throw new Error(err);
 				if (imagesAreSame) return end(res, 200, 'Pages are the same!');
-				res.sendFile('diff.png');
+				res.sendFile(process.env.PWD + '/diff.png');
+				console.log('Done, streamed output OK!');
 			});
 		});
 	});
@@ -49,5 +43,5 @@ function end(res, code, msg) {
 }
 
 app.listen(port, function(){
-	console.log('Web page diff server listening on port %s', port);
+	console.log('Webdiff server listening on port %s', port);
 });
